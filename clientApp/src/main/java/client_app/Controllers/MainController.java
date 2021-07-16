@@ -1,20 +1,17 @@
 package client_app.Controllers;
 
-import client_app.Model.Position;
-import client_app.Service.PositionService;
-import com.sun.rowset.internal.Row;
+import client_app.Model.Category;
+import client_app.Service.CategoryService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import javax.swing.table.TableColumn;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +32,7 @@ public class MainController {
     void onMenuItemClicked(ActionEvent event) {
         if (event.getSource().equals(mnItemAdd)) {
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/position_edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_create.fxml"));
 
             try {
                 loader.load();
@@ -47,7 +44,7 @@ public class MainController {
             }
         } else if(event.getSource().equals(mnItemEdit)){
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/position_update.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_update.fxml"));
 
             try {
                 loader.load();
@@ -71,7 +68,7 @@ public class MainController {
 
 
 
-        List<Position> positions = PositionService.INSTANCE.findAll();
+        List<Category> positions = CategoryService.INSTANCE.findAll();
 
         List<String> names = new ArrayList<>();
         List<Boolean> status = new ArrayList<>();
@@ -79,9 +76,9 @@ public class MainController {
 
         for(int i = 0; i < positions.size(); i++)
         {
-            status.add(positions.get(i).isActive());
-            names.add(positions.get(i).getName());
-            buttons.add(new Button("edit"));
+//            istatus.add(positions.get(i).isActive());
+//            names.add(positions.get(i).getName());
+//            buttons.add(new Button("edit"));
         }
 
 

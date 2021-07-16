@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/ap1")
+@RestController("/api")
 public interface BaseCrudController<S, T>{
 
     @PostMapping("/save")

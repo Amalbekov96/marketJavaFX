@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -22,13 +23,11 @@ public abstract class BaseEntity {
 
     @CreationTimestamp
     @DateTimeFormat(pattern="dd-MM-yyyy HH:mm")
-    @Column(name = "create_date")
     private LocalDateTime createDate;
 
 
     @UpdateTimestamp
     @DateTimeFormat(pattern="dd-MM-yyyy HH:mm")
-    @Column(name = "update_date")
     private LocalDateTime updateDate = LocalDateTime.now();
 
 }

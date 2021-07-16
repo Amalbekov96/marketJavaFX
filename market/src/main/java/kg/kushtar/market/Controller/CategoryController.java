@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/api/category")
 public class CategoryController implements BaseCrudController<CategoryDto, Long>{
 
     private CategoryService categoryService;
@@ -38,12 +38,12 @@ public class CategoryController implements BaseCrudController<CategoryDto, Long>
     }
 
     @Override
-    public CategoryDto findById(Long aLong) {
-        return categoryMapper.toDto(categoryService.findById(aLong));
+    public CategoryDto findById(Long id) {
+        return categoryMapper.toDto(categoryService.findById(id));
     }
 
     @Override
-    public void deleteById(Long aLong) {
-        categoryService.deleteById(aLong);
+    public void deleteById(Long id) {
+        categoryService.deleteById(id);
     }
 }

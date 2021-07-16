@@ -8,4 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<Product, ProductRepo> implements ProductService {
+    public ProductServiceImpl(ProductRepo productRepo) {
+        super(productRepo);
+    }
 }

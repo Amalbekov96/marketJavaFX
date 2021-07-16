@@ -8,4 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, UserRepo> implements UserService {
+    public UserServiceImpl(UserRepo userRepo) {
+        super(userRepo);
+    }
 }

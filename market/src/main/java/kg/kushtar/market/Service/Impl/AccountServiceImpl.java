@@ -8,4 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AccountServiceImpl extends BaseServiceImpl<Account, AccountRepo> implements AccountService {
+    public AccountServiceImpl(AccountRepo accountRepo) {
+        super(accountRepo);
+    }
 }

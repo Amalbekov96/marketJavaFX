@@ -12,7 +12,10 @@ import java.util.List;
 
 public class BaseServiceImpl <E extends BaseEntity, Repo extends BaseRepository<E>> implements BaseService<E> {
 
-    @Autowired
+    public BaseServiceImpl(Repo repo) {
+        this.repo = repo;
+    }
+
     private Repo repo;
 
     @Override
@@ -37,6 +40,6 @@ public class BaseServiceImpl <E extends BaseEntity, Repo extends BaseRepository<
 
     @Override
     public List<E> findAll() {
-        return null;
+        return repo.findAll();
     }
 }

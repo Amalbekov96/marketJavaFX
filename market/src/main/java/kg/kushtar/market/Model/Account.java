@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "account")
+
 public class Account extends BaseEntity {
 
 

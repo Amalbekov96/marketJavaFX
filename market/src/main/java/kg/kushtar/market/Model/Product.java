@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "product")
+
 public class Product extends BaseEntity{
 
     private String name;
@@ -18,4 +18,6 @@ public class Product extends BaseEntity{
     private Boolean active;
     @ManyToOne
     private Category category;
+    @ManyToOne
+    private Account account;
 }

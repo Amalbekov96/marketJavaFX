@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 
-public class PositionUpdateController {
+public class CategoryUpdateController {
 
     @FXML
     private Button btnUpdate;
