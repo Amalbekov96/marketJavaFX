@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/clientApp/clinetApp.iml" filepath="$PROJECT_DIR$/clientApp/clinetApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/market/market.iml" filepath="$PROJECT_DIR$/market/market.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/marketJavaFX.iml" filepath="$PROJECT_DIR$/.idea/marketJavaFX.iml" />
+    </modules>
+  </component>
+</project>
