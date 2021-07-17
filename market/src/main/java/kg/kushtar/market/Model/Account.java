@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 public class Account extends BaseEntity {
 
-
     private String username;
     private String password;
     private Boolean active;

@@ -1,13 +1,17 @@
 package client_app.Controllers;
 
+import client_app.Model.Category;
 import client_app.Service.CategoryService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sun.net.www.http.HttpClient;
+
+import java.io.IOException;
 
 public class CategoryEditController {
 
@@ -23,31 +27,53 @@ public class CategoryEditController {
     @FXML
     private Button btnCancel;
 
-//    @FXML
-//    void onButtonClicked(ActionEvent event) {
-//
-//    }
-
     @FXML
     void onButtonClicked(ActionEvent event) throws Exception {
         if(event.getSource().equals(btnSave)){
 
-//            Position position = new Position();
-//            position.setName(txtName.getText());
-//            position.setActive(checkActive.isSelected());
-//            CategoryService.INSTANCE.save(position);
-//            CategoryService.INSTANCE.closeAddWindow();
-//            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-//            stage.close();
+            Category category = new Category();
+
+            System.out.println(txtName.getText());
+
+            category.setName(txtName.getText());
+            category.setActive(checkActive.isSelected());
+            CategoryService.INSTANCE.save(category);
+            if (category == null){
+                showALert("Не удалось сохранить");
+                return;
+            }else {
+                showALert("Успешно");
+            }
+
+            goBack(btnSave);
+
+        } else if(event.getSource().equals(btnCancel)){
+                goBack(btnCancel);
+        }
+
+    }
 
 
+    private void showALert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,message);
+        alert.show();
+    }
 
-//            MainController m = new MainController();
-//            List<Position> positions = PositionService.INSTANCE.findAll();
-//            ObservableList<Position> observableList = FXCollections.observableList(positions);
-//            m.setListPositions(observableList);
+    private void goBack(Button btn){
+        Stage createMenu = (Stage) btn.getScene().getWindow();
+        createMenu.close();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_menu.fxml"));
+            loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.getRoot()));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     @FXML
     void initialize() {

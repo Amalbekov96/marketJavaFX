@@ -1,19 +1,17 @@
 package client_app.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
-public class Product {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Product extends BaseEntity{
 
-    private Long id;
     private String name;
     private Double price;
     private String barcode;
     private Boolean active;
     private Category category;
+    private Account account;
 
-    @Override
-    public String toString(){
-        return name;
-    }
 }

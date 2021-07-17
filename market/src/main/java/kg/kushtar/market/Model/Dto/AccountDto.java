@@ -8,6 +8,5 @@ public class AccountDto extends BaseEntityDto{
     private String username;
     private String password;
     private Boolean active;
-
     private User user;
 }

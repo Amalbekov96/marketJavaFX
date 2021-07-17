@@ -1,90 +1,97 @@
 package client_app.Controllers;
 
-import client_app.Model.Category;
-import client_app.Service.CategoryService;
+import client_app.Main;
+import client_app.Model.Product;
+import client_app.Service.ProductService;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.List;
 
 public class MainController {
 
     @FXML
-    private MenuItem mnItemAdd;
+    MenuBar myMenuBar;
 
     @FXML
-    private MenuItem mnItemEdit;
+    private MenuItem mnItemCategories;
 
     @FXML
-    private TableView<ListView> tableView;
+    private MenuItem mnItemAddProduct;
 
+    @FXML
+    private MenuItem mnItemEditProduct;
+
+    @FXML
+    private TableView<Product> tblViewProducts;
+
+    @FXML
+    private TableColumn<Product, Long> colmnId;
+
+    @FXML
+    private TableColumn<Product, String> colmnProductName;
+
+    @FXML
+    private TableColumn<Product, String> colmnCategoryName;
+
+    @FXML
+    private TableColumn<Product, String> colmnPrice;
 
     @FXML
     void onMenuItemClicked(ActionEvent event) {
-        if (event.getSource().equals(mnItemAdd)) {
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_create.fxml"));
 
-            try {
-                loader.load();
-                Parent parent = loader.getRoot();
-                stage.setScene(new Scene(parent));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if(event.getSource().equals(mnItemEdit)){
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_update.fxml"));
-
-            try {
-                loader.load();
-                Parent parent = loader.getRoot();
-                stage.setScene(new Scene(parent));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if(event.getSource().equals(mnItemCategories)){
+            categoryTable(mnItemCategories);
         }
+
     }
 
-        //This line gets the Stage information
+    private void initTableView() {
+        List<Product> productList = ProductService.INSTANCE.findAll();
+        tblViewProducts.setItems(FXCollections.observableArrayList(productList));
+    }
 
+    private void initTableViewProperties() {
+        colmnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colmnProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colmnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colmnCategoryName.setCellValueFactory(column->new SimpleStringProperty(column.getValue().getCategory().getName()));
+    }
+
+    private void categoryTable(MenuItem item){
+        Stage owner = (Stage)item.getParentPopup().getOwnerWindow();
+        owner.close();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_menu.fxml"));
+            loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.getRoot()));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void initialize() {
-
-//        TableColumn<Row, Number> stepCol = new TableColumn<>("Step");
-
-
-
-
-        List<Category> positions = CategoryService.INSTANCE.findAll();
-
-        List<String> names = new ArrayList<>();
-        List<Boolean> status = new ArrayList<>();
-        List<Button> buttons = new ArrayList<>();
-
-        for(int i = 0; i < positions.size(); i++)
-        {
-//            istatus.add(positions.get(i).isActive());
-//            names.add(positions.get(i).getName());
-//            buttons.add(new Button("edit"));
-        }
-
-
-
-        ObservableList<String> observableList = FXCollections.observableList(names);
-
-
+        initTableView();
+        initTableViewProperties();
     }
+
+
+
 }

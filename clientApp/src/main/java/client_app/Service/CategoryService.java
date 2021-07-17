@@ -10,4 +10,5 @@ public interface CategoryService {
     List<Category> findAll();
     void save(Category category);
     void closeAddWindow();
+    Category findById(Long id);
 }

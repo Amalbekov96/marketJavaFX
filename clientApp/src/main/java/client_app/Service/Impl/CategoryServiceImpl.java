@@ -14,7 +14,9 @@ import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
 
+    private String baseUrl = "http://localhost:9090/api/category/";
     private ObjectMapper objectMapper = new ObjectMapper();
+    private OkHttpClient client = new OkHttpClient();
 
     @Override
     public List<Category> findAll() {
@@ -47,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
 
             Request request = new Request.Builder()
                     .post(requestBody)
-                    .url("http://localhost:9090/api/v1/positions/save")
+                    .url("http://localhost:9090/api/category/save")
                     .build();
             Call call = okHttpClient.newCall(request);
             Response response = call.execute();
@@ -61,5 +63,26 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void closeAddWindow() {
 
+    }
+
+    @Override
+    public Category findById(Long id) {
+        Request request = new Request.Builder()
+                .url(baseUrl + "/findById/"+id)
+                .build();
+
+        Call call = client.newCall(request);
+
+        try {
+            Response response = call.execute();
+
+            Category category = objectMapper.readValue(response.body().string(), Category.class);
+
+            return category;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
