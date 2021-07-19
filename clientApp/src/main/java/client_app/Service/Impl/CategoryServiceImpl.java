@@ -53,6 +53,30 @@ public class CategoryServiceImpl implements CategoryService {
                     .build();
             Call call = okHttpClient.newCall(request);
             Response response = call.execute();
+            response.close();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void update(Category category) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        try {
+
+            RequestBody requestBody = RequestBody.create(objectMapper.writeValueAsString(category), MediaType.parse("application/json"));
+
+
+            Request request = new Request.Builder()
+                    .post(requestBody)
+                    .url("http://localhost:9090/api/category/update")
+                    .build();
+            Call call = okHttpClient.newCall(request);
+            Response response = call.execute();
+            response.close();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -61,8 +85,23 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void closeAddWindow() {
+    public void delete(Long id) {
 
+        Request request = new Request.Builder()
+                .delete()
+                .url(baseUrl + "/deleteById/"+id)
+                .build();
+
+        Call call = client.newCall(request);
+
+        try {
+            Response response = call.execute();
+
+            System.out.println(response.body().string());
+            response.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

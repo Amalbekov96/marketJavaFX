@@ -1,8 +1,10 @@
 package kg.kushtar.market.Controller;
 
 import kg.kushtar.market.Mapper.AccountMapper;
+import kg.kushtar.market.Model.Account;
 import kg.kushtar.market.Model.Dto.AccountDto;
 import kg.kushtar.market.Service.AccountService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,4 +46,5 @@ public class AccountController implements BaseCrudController<AccountDto, Long>{
     public void deleteById(Long aLong) {
         accountService.deleteById(aLong);
     }
+
 }

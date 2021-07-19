@@ -2,6 +2,7 @@ package kg.kushtar.market.Controller;
 
 import kg.kushtar.market.Mapper.UserMapper;
 import kg.kushtar.market.Model.Dto.UserDto;
+import kg.kushtar.market.Model.User;
 import kg.kushtar.market.Service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

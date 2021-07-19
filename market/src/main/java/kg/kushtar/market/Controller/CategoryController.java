@@ -29,7 +29,7 @@ public class CategoryController implements BaseCrudController<CategoryDto, Long>
 
     @Override
     public CategoryDto update(CategoryDto categoryDto) {
-        return categoryMapper.toDto(categoryService.create(categoryMapper.toEntity(categoryDto)));
+        return categoryMapper.toDto(categoryService.update(categoryMapper.toEntity(categoryDto)));
     }
 
     @Override
@@ -43,7 +43,9 @@ public class CategoryController implements BaseCrudController<CategoryDto, Long>
     }
 
     @Override
-    public void deleteById(Long id) {
-        categoryService.deleteById(id);
+    public void deleteById(Long aLong) {
+        System.out.println(aLong);
+        categoryService.deleteById(aLong);
     }
+
 }

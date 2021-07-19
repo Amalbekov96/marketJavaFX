@@ -33,6 +33,9 @@ public class CategoryController {
     private MenuItem mnItemEdit;
 
     @FXML
+    private MenuItem mnItemDelete;
+
+    @FXML
     private MenuItem mnItemGoBack;
 
     @FXML
@@ -47,8 +50,17 @@ public class CategoryController {
             addCategory(mnItemAdd);
         } else if(event.getSource().equals(mnItemEdit)){
             updateCategory(mnItemEdit);
+        } else if(event.getSource().equals(mnItemDelete)){
+            DelteCategory();
         }
 
+    }
+
+    private void DelteCategory() {
+        Category category = listCategories.getSelectionModel().getSelectedItem();
+        CategoryService.INSTANCE.delete(category.getId());
+        listCategories.refresh();
+        initTableView();
     }
 
     private void addCategory(MenuItem item){
@@ -59,6 +71,7 @@ public class CategoryController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_create.fxml"));
             loader.load();
             Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(loader.getRoot()));
             stage.show();
         } catch (IOException e) {
@@ -75,6 +88,8 @@ public class CategoryController {
             loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.getRoot()));
+            CategoryUpdateController Controller = loader.getController();
+            Controller.edit(listCategories.getSelectionModel().getSelectedItem());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -97,23 +112,6 @@ public class CategoryController {
         }
     }
 
-    private void categoryUpdate(){
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/category_update.fxml"));
-        try {
-            loader.load();
-            Parent parent = loader.getRoot();
-            stage.setTitle("Редактирование категории");
-            stage.setScene(new Scene(parent));
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            CategoryUpdateController Controller = loader.getController();
-            Controller.edit(listCategories.getSelectionModel().getSelectedItem());
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void initTableView() {
         List<Category> categoryList = CategoryService.INSTANCE.findAll();

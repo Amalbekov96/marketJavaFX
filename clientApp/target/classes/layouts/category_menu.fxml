@@ -14,6 +14,7 @@
                     <items>
                         <MenuItem fx:id="mnItemAdd" mnemonicParsing="false" onAction="#onMenuItemClicked" text="create" />
                         <MenuItem fx:id="mnItemEdit" mnemonicParsing="false" onAction="#onMenuItemClicked" text="edit" />
+                  <MenuItem fx:id="mnItemDelete" mnemonicParsing="false" onAction="#onMenuItemClicked" text="delete" />
                   <MenuItem fx:id="mnItemGoBack" mnemonicParsing="false" onAction="#onMenuItemClicked" text="go back" />
                     </items>
                 </Menu>

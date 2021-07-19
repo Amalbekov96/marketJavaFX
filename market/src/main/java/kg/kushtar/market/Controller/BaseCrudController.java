@@ -15,6 +15,6 @@ public interface BaseCrudController<S, T>{
     List<S> findAll();
     @GetMapping("/findById/{id}")
     S findById(@PathVariable T t);
-    @DeleteMapping("/DeleteById/{id}")
-    void deleteById(@PathVariable T t);
+    @DeleteMapping("/deleteById/{id}")
+    void deleteById(@PathVariable("id") T t);
 }

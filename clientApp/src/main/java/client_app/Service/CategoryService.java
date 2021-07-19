@@ -9,6 +9,7 @@ public interface CategoryService {
     CategoryService INSTANCE = new CategoryServiceImpl();
     List<Category> findAll();
     void save(Category category);
-    void closeAddWindow();
+    void update(Category category);
+    void delete(Long id);
     Category findById(Long id);
 }

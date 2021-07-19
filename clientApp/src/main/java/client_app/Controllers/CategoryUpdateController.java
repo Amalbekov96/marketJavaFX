@@ -11,11 +11,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sun.net.www.http.HttpClient;
 
 import java.io.IOException;
 
 
 public class CategoryUpdateController {
+
+    private Category category;
 
     @FXML
     private Button btnUpdate;
@@ -30,19 +33,17 @@ public class CategoryUpdateController {
     @FXML
     private CheckBox checkActive;
 
-
     @FXML
     void onButtonClicked(ActionEvent event) {
         if(event.getSource().equals(btnUpdate)){
 
-            Category category = new Category();
+            Category categoryTemp = new Category();
+            categoryTemp.setId(this.category.getId());
+            categoryTemp.setName(txtName.getText());
+            categoryTemp.setActive(checkActive.isSelected());
+            CategoryService.INSTANCE.save(categoryTemp);
 
-            System.out.println(txtName.getText());
-
-            category.setName(txtName.getText());
-            category.setActive(checkActive.isSelected());
-            CategoryService.INSTANCE.save(category);
-            if (category == null){
+            if (categoryTemp == null){
                 showALert("Не удалось сохранить");
                 return;
             }else {
@@ -50,7 +51,6 @@ public class CategoryUpdateController {
             }
 
             goBack(btnUpdate);
-
         } else if(event.getSource().equals(btnUpdateCancel)){
             goBack(btnUpdateCancel);
         }
@@ -79,11 +79,16 @@ public class CategoryUpdateController {
     }
 
 
-    @FXML
     void edit(Category category){
-        Category category1 = CategoryService.INSTANCE.findById(category.getId());
-        txtName.setText(category1.getName());
-        checkActive.setSelected(category1.getActive());
+
+        this.category = category;
+        if (category.getId()!=null){
+            category = CategoryService.INSTANCE.findById(category.getId());
+            this.category.setId(category.getId());
+            txtName.setText(category.getName());
+            checkActive.setSelected(category.getActive());
+        }
+
     }
 
 }

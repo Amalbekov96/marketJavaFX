@@ -45,4 +45,5 @@ public class ProductController implements BaseCrudController<ProductDto, Long>{
     public void deleteById(Long aLong) {
         productService.deleteById(aLong);
     }
+
 }

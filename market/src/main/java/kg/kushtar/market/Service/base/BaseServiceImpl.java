@@ -25,6 +25,9 @@ public class BaseServiceImpl <E extends BaseEntity, Repo extends BaseRepository<
 
     @Override
     public E update(E e) {
+        E e1 = repo.findById(e.getId()).orElseThrow(()-> new NotFoundExist("Not Found"));
+        e.setCreateDate(e1.getCreateDate());
+        e.setUpdateDate(e1.getUpdateDate());
         return repo.save(e);
     }
 
