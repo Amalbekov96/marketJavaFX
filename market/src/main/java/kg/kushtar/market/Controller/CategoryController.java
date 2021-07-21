@@ -48,4 +48,9 @@ public class CategoryController implements BaseCrudController<CategoryDto, Long>
         categoryService.deleteById(aLong);
     }
 
+    @Override
+    public CategoryDto findByName(String name) {
+        return null;
+    }
+
 }

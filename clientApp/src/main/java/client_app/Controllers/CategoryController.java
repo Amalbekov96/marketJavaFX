@@ -1,30 +1,24 @@
 package client_app.Controllers;
 
 import client_app.Model.Category;
-import client_app.Model.Product;
-import client_app.Service.CategoryService;
-import client_app.Service.ProductService;
-import javafx.beans.property.SimpleStringProperty;
+import client_app.Service.httpClient;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import sun.net.www.http.HttpClient;
 
 import java.io.IOException;
 import java.util.List;
 
 public class CategoryController {
+
+
 
     @FXML
     private MenuItem mnItemAdd;
@@ -58,7 +52,7 @@ public class CategoryController {
 
     private void DelteCategory() {
         Category category = listCategories.getSelectionModel().getSelectedItem();
-        CategoryService.INSTANCE.delete(category.getId());
+        httpClient.INSTANCE.delete(category.getId());
         listCategories.refresh();
         initTableView();
     }
@@ -114,7 +108,7 @@ public class CategoryController {
 
 
     private void initTableView() {
-        List<Category> categoryList = CategoryService.INSTANCE.findAll();
+        List<Category> categoryList = httpClient.INSTANCE.findAllCa();
         listCategories.setItems(FXCollections.observableArrayList(categoryList));
     }
 

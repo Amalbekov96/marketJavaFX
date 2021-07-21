@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 
 
 public interface UserService extends BaseService<User> {
+
+    User findByName(String name);
 }

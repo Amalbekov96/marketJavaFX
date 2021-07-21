@@ -46,4 +46,9 @@ public class ProductController implements BaseCrudController<ProductDto, Long>{
         productService.deleteById(aLong);
     }
 
+    @Override
+    public ProductDto findByName(String name) {
+        return null;
+    }
+
 }

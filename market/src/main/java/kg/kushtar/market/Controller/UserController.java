@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController implements BaseCrudController<UserDto, Long>{
 
     private UserService userService;
@@ -44,5 +44,10 @@ public class UserController implements BaseCrudController<UserDto, Long>{
     @Override
     public void deleteById(Long aLong) {
         userService.deleteById(aLong);
+    }
+
+    @Override
+    public UserDto findByName(String name) {
+        return userMapper.toDto(userService.findByName(name));
     }
 }

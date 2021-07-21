@@ -7,15 +7,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client_app.Controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client_app.Controllers.ProductMenuController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Справочники">
                     <items>
-                        <MenuItem fx:id="mnItemCategories" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Категория товара" />
-                        <MenuItem fx:id="mnItemAddProduct" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Добавить товар" />
-                        <MenuItem fx:id="mnItemEditProduct" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Редактировать товар" />
+                        <MenuItem fx:id="mnItemCategories" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Categories" />
+                        <MenuItem fx:id="mnItemAddProduct" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Add product" />
+                        <MenuItem fx:id="mnItemEditProduct" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Edit product" />
+                  <MenuItem fx:id="mnItemDeleteProduct" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Delete product" />
+                  <MenuItem fx:id="LogOut" mnemonicParsing="false" onAction="#onMenuItemClicked" text="Log out" />
                     </items>
                 </Menu>
             </menus>

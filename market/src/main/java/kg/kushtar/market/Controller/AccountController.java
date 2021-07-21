@@ -47,4 +47,9 @@ public class AccountController implements BaseCrudController<AccountDto, Long>{
         accountService.deleteById(aLong);
     }
 
+    @Override
+    public AccountDto findByName(String name) {
+        return null;
+    }
+
 }

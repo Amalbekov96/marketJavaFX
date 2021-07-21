@@ -11,5 +11,4 @@ public interface BaseService<E extends BaseEntity>{
     E findById(Long id);
     void deleteById(Long id);
     List<E> findAll();
-
 }

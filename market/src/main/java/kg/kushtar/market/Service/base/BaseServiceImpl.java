@@ -45,4 +45,6 @@ public class BaseServiceImpl <E extends BaseEntity, Repo extends BaseRepository<
     public List<E> findAll() {
         return repo.findAll();
     }
+
+
 }

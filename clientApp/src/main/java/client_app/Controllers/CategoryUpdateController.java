@@ -1,7 +1,7 @@
 package client_app.Controllers;
 
 import client_app.Model.Category;
-import client_app.Service.CategoryService;
+import client_app.Service.httpClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sun.net.www.http.HttpClient;
 
 import java.io.IOException;
 
@@ -41,7 +40,7 @@ public class CategoryUpdateController {
             categoryTemp.setId(this.category.getId());
             categoryTemp.setName(txtName.getText());
             categoryTemp.setActive(checkActive.isSelected());
-            CategoryService.INSTANCE.save(categoryTemp);
+            httpClient.INSTANCE.save(categoryTemp);
 
             if (categoryTemp == null){
                 showALert("Не удалось сохранить");
@@ -83,7 +82,7 @@ public class CategoryUpdateController {
 
         this.category = category;
         if (category.getId()!=null){
-            category = CategoryService.INSTANCE.findById(category.getId());
+            category = httpClient.INSTANCE.findByIdCa(category.getId());
             this.category.setId(category.getId());
             txtName.setText(category.getName());
             checkActive.setSelected(category.getActive());

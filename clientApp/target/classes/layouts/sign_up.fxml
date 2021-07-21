@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client_app.Controllers.loginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client_app.Controllers.signUpController">
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
@@ -29,15 +29,48 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="registUnameLabel" text="Name">
+            <Label fx:id="registAnameLabel" text="Account Name" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="nameText" GridPane.columnIndex="1">
+            <TextField fx:id="AnameText" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label fx:id="passLabel" text="Passsword" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="passText" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label fx:id="passConLabel" text="Confirm Passsword" GridPane.rowIndex="3">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="passConText" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label fx:id="uNameLabel" text="User Name">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="uNameText" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
